@@ -7,3 +7,8 @@ export const getProducts = () => {
     const products = fs.readFileSync(dbPath, "utf-8");
     return JSON.parse(products);
 }
+
+export const createProduct = (payload : any) => { 
+    console.log("payload", payload); 
+    fs.writeFileSync(dbPath, payload);
+}
