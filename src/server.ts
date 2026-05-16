@@ -1,19 +1,8 @@
 import { createServer, IncomingMessage, Server, ServerResponse } from "http";
+import { routeHandler } from "./routes/route";
 
 const server : Server  = createServer((req: IncomingMessage, res: ServerResponse) => {
-    const url = req.url || "/";
-    if (url === "/") {
-        res.writeHead(200, { "content-type" : "application/json"})
-        res.end(JSON.stringify({ message: "welcome to the node server!" }));
-    }
-    else if (url === "/hello") {
-        res.writeHead(200, { "content-type" : "application/json"})
-        res.end(JSON.stringify({ message: "hello world!" }));
-    }
-    else {
-        res.writeHead(404, { "content-type" : "application/json"})
-        res.end(JSON.stringify({ message: "not found" }));
-    }
+    routeHandler(req, res);
 });
 
 server.listen(8000, () => {
