@@ -13,6 +13,9 @@ export const routeHandler = (req: IncomingMessage, res: ServerResponse) => {
   else if (url === "/products" && method === "POST") {
     productController(req, res);
   }
+  else if (url.startsWith("/products") && method === "PUT") {
+    productController(req, res);
+  }
   else {
     res.writeHead(404, { "content-type": "application/json" });
     res.end(JSON.stringify({ message: "not found" }));
